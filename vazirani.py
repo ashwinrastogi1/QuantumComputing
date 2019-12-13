@@ -15,6 +15,8 @@ approximately 60% of the time, i.e. the success rate of the current
 implementation is about 60%. This value may vary as I ran it 3 times and
 got success rates between 52% and 67%.
 
+Followed: https://github.com/quantumlib/Cirq/blob/master/examples/bernstein_vazirani.py
+
 '''
 
 DEFAULT_NUM_QUBITS = 4
