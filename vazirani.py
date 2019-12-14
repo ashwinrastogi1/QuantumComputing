@@ -9,11 +9,8 @@ The code below implements the Bernstein-Vazirani algorithm in the
 specific instance of finding factors of a function that generates
 a bitstring of given length. The code also generates bitstrings of
 random lengths between 1 and 20 and checks if the algorithm returns
-a correct value. Based on the current implementation, repeating this
-process 100 times (took upto 20 mins) returns the correct factors/bitstring
-approximately 60% of the time, i.e. the success rate of the current
-implementation is about 60%. This value may vary as I ran it 3 times and
-got success rates between 52% and 67%.
+a correct value. I repeat this process 100 times to measure the
+success rate (took about 20 mins to run) and is about 100%.
 
 Followed: https://github.com/quantumlib/Cirq/blob/master/examples/bernstein_vazirani.py
 
@@ -39,12 +36,12 @@ def compute_algorithm(num_bits=DEFAULT_NUM_QUBITS):
     # Creating Oracle
     oracle = []
     if bias_bit:
-        oracle = cirq.X(output_qubit)
+        oracle.append(cirq.X(output_qubit))
 
-    else:
-        for curr_qubit, curr_bit in zip(input_qubits, factor_bits):
-            if curr_bit:
-                oracle.append(cirq.CNOT(curr_qubit, output_qubit))
+    
+    for curr_qubit, curr_bit in zip(input_qubits, factor_bits):
+        if curr_bit:
+            oracle.append(cirq.CNOT(curr_qubit, output_qubit))
 
     # Creating Bernstein Vazirani Circuit
     circuit = cirq.Circuit()
